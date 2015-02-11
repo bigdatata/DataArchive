@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="archive_task">
+    <typeAlias alias="archive_task" type="com.lt.study.archive.pojo.ArchiveTask"/>
+    <resultMap id="BaseResultMap" class="com.lt.study.archive.pojo.ArchiveTask">
+        <result column="id" property="id" jdbcType="INTEGER"/>
+        <result column="source_database" property="sourceDatabase" jdbcType="VARCHAR"/>
+        <result column="source_table" property="sourceTable" jdbcType="VARCHAR"/>
+        <result column="target_database" property="targetDatabase" jdbcType="VARCHAR"/>
+        <result column="target_table" property="targetTable" jdbcType="VARCHAR"/>
+        <result column="archive_type" property="archiveType" jdbcType="TINYINT"/>
+        <result column="key_column" property="keyColumn" jdbcType="VARCHAR"/>
+        <result column="day_number" property="dayNumber" jdbcType="INTEGER"/>
+        <result column="date_column" property="dateColumn" jdbcType="VARCHAR"/>
+        <result column="archive_columns" property="archiveColumns" jdbcType="VARCHAR"/>
+        <result column="condition_sql" property="conditionSql" jdbcType="VARCHAR"/>
+        <result column="per_save_num" property="perSaveNum" jdbcType="INTEGER"/>
+        <result column="per_delete_num" property="perDeleteNum" jdbcType="INTEGER"/>
+        <result column="cron_expression" property="cronExpression" jdbcType="VARCHAR"/>
+        <result column="is_enable" property="isEnable" jdbcType="BIT"/>
+        <result column="is_deleted" property="isDeleted" jdbcType="BIT"/>
+        <result column="created" property="created" jdbcType="TIMESTAMP"/>
+        <result column="updated" property="updated" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, source_database, source_table, target_database, target_table, archive_type, key_column, 
+    day_number, date_column, archive_columns, condition_sql, per_save_num, per_delete_num, 
+    cron_expression, is_enable, is_deleted, created, updated
+  </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterClass="archive_task">
+        select
+        <include refid="archive_task.Base_Column_List"/>
+        from archive_task
+        where id = #id#
+    </select>
+    <delete id="deleteByPrimaryKey" parameterClass="archive_task">
+    delete from archive_task
+    where id = #id#
+  </delete>
+    <insert id="insert" parameterClass="archive_task">
+        <selectKey resultClass="java.lang.Integer" keyProperty="id" type="post">
+            SELECT @@IDENTITY AS VALUE
+        </selectKey>
+        insert into archive_task (source_database, source_table, target_database, target_table, archive_type,
+        key_column, day_number, date_column, archive_columns, condition_sql, per_save_num,
+        per_delete_num, cron_expression, is_enable, is_deleted, created, updated
+        )
+        values (#sourceDatabase#, #sourceTable#, #targetDatabase#, #targetTable#, #archiveType#,
+        #keyColumn#, #dayNumber#, #dateColumn#, #archiveColumns#, #conditionSql#, #perSaveNum#,
+        #perDeleteNum#, #cronExpression#, #isEnable#, #isDeleted#, now(), now()
+        )
+    </insert>
+    <insert id="insertSelective" parameterClass="archive_task">
+        <selectKey resultClass="java.lang.Integer" keyProperty="id">
+            SELECT @@IDENTITY AS VALUE
+        </selectKey>
+        insert into archive_task
+        <dynamic prepend="(">
+            <isNotNull prepend="," property="id">
+                id
+            </isNotNull>
+            <isNotNull prepend="," property="sourceDatabase">
+                source_database
+            </isNotNull>
+            <isNotNull prepend="," property="sourceTable">
+                source_table
+            </isNotNull>
+            <isNotNull prepend="," property="targetDatabase">
+                target_database
+            </isNotNull>
+            <isNotNull prepend="," property="targetTable">
+                target_table
+            </isNotNull>
+            <isNotNull prepend="," property="archiveType">
+                archive_type
+            </isNotNull>
+            <isNotNull prepend="," property="keyColumn">
+                key_column
+            </isNotNull>
+            <isNotNull prepend="," property="dayNumber">
+                day_number
+            </isNotNull>
+            <isNotNull prepend="," property="dateColumn">
+                date_column
+            </isNotNull>
+            <isNotNull prepend="," property="archiveColumns">
+                archive_columns
+            </isNotNull>
+            <isNotNull prepend="," property="conditionSql">
+                condition_sql
+            </isNotNull>
+            <isNotNull prepend="," property="perSaveNum">
+                per_save_num
+            </isNotNull>
+            <isNotNull prepend="," property="perDeleteNum">
+                per_delete_num
+            </isNotNull>
+            <isNotNull prepend="," property="cronExpression">
+                cron_expression
+            </isNotNull>
+            <isNotNull prepend="," property="isEnable">
+                is_enable
+            </isNotNull>
+            <isNotNull prepend="," property="isDeleted">
+                is_deleted
+            </isNotNull>
+            <isNotNull prepend="," property="created">
+                created
+            </isNotNull>
+            <isNotNull prepend="," property="updated">
+                updated
+            </isNotNull>
+            )
+        </dynamic>
+        values
+        <dynamic prepend="(">
+            <isNotNull prepend="," property="id">
+                #id#
+            </isNotNull>
+            <isNotNull prepend="," property="sourceDatabase">
+                #sourceDatabase#
+            </isNotNull>
+            <isNotNull prepend="," property="sourceTable">
+                #sourceTable#
+            </isNotNull>
+            <isNotNull prepend="," property="targetDatabase">
+                #targetDatabase#
+            </isNotNull>
+            <isNotNull prepend="," property="targetTable">
+                #targetTable#
+            </isNotNull>
+            <isNotNull prepend="," property="archiveType">
+                #archiveType#
+            </isNotNull>
+            <isNotNull prepend="," property="keyColumn">
+                #keyColumn#
+            </isNotNull>
+            <isNotNull prepend="," property="dayNumber">
+                #dayNumber#
+            </isNotNull>
+            <isNotNull prepend="," property="dateColumn">
+                #dateColumn#
+            </isNotNull>
+            <isNotNull prepend="," property="archiveColumns">
+                #archiveColumns#
+            </isNotNull>
+            <isNotNull prepend="," property="conditionSql">
+                #conditionSql#
+            </isNotNull>
+            <isNotNull prepend="," property="perSaveNum">
+                #perSaveNum#
+            </isNotNull>
+            <isNotNull prepend="," property="perDeleteNum">
+                #perDeleteNum#
+            </isNotNull>
+            <isNotNull prepend="," property="cronExpression">
+                #cronExpression#
+            </isNotNull>
+            <isNotNull prepend="," property="isEnable">
+                #isEnable#
+            </isNotNull>
+            <isNotNull prepend="," property="isDeleted">
+                #isDeleted#
+            </isNotNull>
+            <isNotNull prepend="," property="created">
+                #created#
+            </isNotNull>
+            <isNotNull prepend="," property="updated">
+                #updated#
+            </isNotNull>
+            )
+        </dynamic>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterClass="archive_task">
+        update archive_task set updated=now()
+            <isNotNull prepend="," property="sourceDatabase">
+                source_database = #sourceDatabase#
+            </isNotNull>
+            <isNotNull prepend="," property="sourceTable">
+                source_table = #sourceTable#
+            </isNotNull>
+            <isNotNull prepend="," property="targetDatabase">
+                target_database = #targetDatabase#
+            </isNotNull>
+            <isNotNull prepend="," property="targetTable">
+                target_table = #targetTable#
+            </isNotNull>
+            <isNotNull prepend="," property="archiveType">
+                archive_type = #archiveType#
+            </isNotNull>
+            <isNotNull prepend="," property="keyColumn">
+                key_column = #keyColumn#
+            </isNotNull>
+            <isNotNull prepend="," property="dayNumber">
+                day_number = #dayNumber#
+            </isNotNull>
+            <isNotNull prepend="," property="dateColumn">
+                date_column = #dateColumn#
+            </isNotNull>
+            <isNotNull prepend="," property="archiveColumns">
+                archive_columns = #archiveColumns#
+            </isNotNull>
+            <isNotNull prepend="," property="conditionSql">
+                condition_sql = #conditionSql#
+            </isNotNull>
+            <isNotNull prepend="," property="perSaveNum">
+                per_save_num = #perSaveNum#
+            </isNotNull>
+            <isNotNull prepend="," property="perDeleteNum">
+                per_delete_num = #perDeleteNum#
+            </isNotNull>
+            <isNotNull prepend="," property="cronExpression">
+                cron_expression = #cronExpression#
+            </isNotNull>
+            <isNotNull prepend="," property="isEnable">
+                is_enable = #isEnable#
+            </isNotNull>
+            <isNotNull prepend="," property="isDeleted">
+                is_deleted = #isDeleted#
+            </isNotNull>
+        where id = #id#
+    </update>
+    <update id="updateByPrimaryKey" parameterClass="archive_task">
+    update archive_task
+    set source_database = #sourceDatabase#,
+      source_table = #sourceTable#,
+      target_database = #targetDatabase#,
+      target_table = #targetTable#,
+      archive_type = #archiveType#,
+      key_column = #keyColumn#,
+      day_number = #dayNumber#,
+      date_column = #dateColumn#,
+      archive_columns = #archiveColumns#,
+      condition_sql = #conditionSql#,
+      per_save_num = #perSaveNum#,
+      per_delete_num = #perDeleteNum#,
+      cron_expression = #cronExpression#,
+      is_enable = #isEnable#,
+      is_deleted = #isDeleted#,
+      updated = now()
+    where id = #id#
+  </update>
+
+    <sql id="Where_Clause">
+        <dynamic prepend="where">
+            <isNotNull prepend="AND" property="sourceDatabase">
+                source_database = #sourceDatabase#
+            </isNotNull>
+            <isNotNull prepend="AND" property="sourceTable">
+                source_table = #sourceTable#
+            </isNotNull>
+            <isNotNull prepend="AND" property="targetDatabase">
+                target_database = #targetDatabase#
+            </isNotNull>
+            <isNotNull prepend="AND" property="targetTable">
+                target_table = #targetTable#
+            </isNotNull>
+            <isNotNull prepend="AND" property="archiveType">
+                archive_type = #archiveType#
+            </isNotNull>
+            <isNotNull prepend="AND" property="keyColumn">
+                key_column = #keyColumn#
+            </isNotNull>
+            <isNotNull prepend="AND" property="dayNumber">
+                day_number = #dayNumber#
+            </isNotNull>
+            <isNotNull prepend="AND" property="dateColumn">
+                date_column = #dateColumn#
+            </isNotNull>
+            <isNotNull prepend="AND" property="archiveColumns">
+                archive_columns = #archiveColumns#
+            </isNotNull>
+            <isNotNull prepend="AND" property="conditionSql">
+                condition_sql = #conditionSql#
+            </isNotNull>
+            <isNotNull prepend="AND" property="perSaveNum">
+                per_save_num = #perSaveNum#
+            </isNotNull>
+            <isNotNull prepend="AND" property="perDeleteNum">
+                per_delete_num = #perDeleteNum#
+            </isNotNull>
+            <isNotNull prepend="AND" property="cronExpression">
+                cron_expression = #cronExpression#
+            </isNotNull>
+            <isNotNull prepend="AND" property="isEnable">
+                is_enable = #isEnable#
+            </isNotNull>
+            <isNotNull prepend="AND" property="isDeleted">
+                is_deleted = #isDeleted#
+            </isNotNull>
+            <isNotNull prepend="AND" property="created">
+                created = #created#
+            </isNotNull>
+            <isNotNull prepend="AND" property="updated">
+                updated = #updated#
+            </isNotNull>
+        </dynamic>
+    </sql>
+    <select id="selectEntryByMap" parameterClass="java.util.Map"
+            resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM archive_task
+        <include refid="Where_Clause"/>
+    </select>
+</sqlMap>

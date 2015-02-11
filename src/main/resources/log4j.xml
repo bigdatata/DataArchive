@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='GBK' ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+	<appender name="CONSOLE" class="org.apache.log4j.ConsoleAppender">
+		<param name="encoding" value="GBK" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{ABSOLUTE} %t %5p [%c:%L] - %m%n" />
+		</layout>
+	</appender>
+
+    <appender name="Worker-APPENDER" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="file" value="/export/Logs/data.archive.com/worker.log"/>
+        <param name="append" value="true"/>
+        <param name="DatePattern" value="'.'yyyy-MM-dd'.log'"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="[%d{yyyy-MM-dd HH:mm:ss:sss z}] %t %5p %c{2}: %m%n"/>
+        </layout>
+    </appender>
+
+    <appender name="OPERATE-APPENDER" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="file" value="/export/Logs/data.archive.com/operate.log"/>
+        <param name="append" value="true"/>
+        <param name="DatePattern" value="'.'yyyy-MM-dd'.log'"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="[%d{yyyy-MM-dd HH:mm:ss:sss z}] %t %5p %c{2}: %m%n"/>
+        </layout>
+    </appender>
+	
+	<category name="java.sql" additivity="false">
+		<priority value="info" />
+		<appender-ref ref="CONSOLE" />
+	</category>
+	
+	<category name="org.apache.struts2" additivity="false">
+		<priority value="info" />
+		<appender-ref ref="CONSOLE" />
+	</category>
+	
+	<category name="org.springframework" additivity="false">
+		<priority value="info" />
+		<appender-ref ref="CONSOLE" />
+	</category>
+
+    <category name="com.lt.study.archive.worker" additivity="false">
+        <priority value="info"/>
+        <appender-ref ref="Worker-APPENDER"/>
+        <appender-ref ref="CONSOLE" />
+    </category>
+
+    <category name="com.lt.study.archive.controller" additivity="false">
+        <priority value="info"/>
+        <appender-ref ref="OPERATE-APPENDER"/>
+        <appender-ref ref="CONSOLE" />
+    </category>
+	
+	<root>
+		<priority value="info" />
+		<appender-ref ref="CONSOLE" />
+	</root>
+</log4j:configuration>

@@ -1,0 +1,16 @@
+.form-horizontal .control-group {
+    margin-bottom: 10px;
+}
+#content{
+    margin-top: 60px;
+}
+
+.container{
+    width: 1100px;
+}
+.navbar-static-top .container, .navbar-fixed-top .container, .navbar-fixed-bottom .container {
+    width: 1100px;
+}
+.table th, .table td {
+    text-align: center;
+}

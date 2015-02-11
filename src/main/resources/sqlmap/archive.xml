@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="archive">
+    <select id="select" resultClass="java.util.HashMap" parameterClass="java.util.Map">
+      select $archiveColumns$ from  $sourceTable$  $where$
+    </select>
+
+    <delete id="delete" parameterClass="java.util.Map">
+      delete from  $sourceTable$  $where$
+    </delete>
+
+    <insert id="insert" parameterClass="java.util.Map">
+        insert ignore into $targetTable$ ($archiveColumns$) values $values$
+    </insert>
+
+    <select id="selectKeyTop" resultClass="Long">
+        select $key$ from $sourceTable$  $where$ limit 1
+    </select>
+
+    <select id="count" resultClass="Long">
+        select  count(1) from  $sourceTable$  $where$
+    </select>
+
+    <select id="showTable" resultClass="java.lang.String" >
+        show tables;
+    </select>
+
+</sqlMap>

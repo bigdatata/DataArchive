@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="GBK"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
+       default-autowire="byName">
+
+	<bean id="sqlMapClient" class="org.springframework.orm.ibatis.SqlMapClientFactoryBean">
+		<property name="configLocation" value="classpath:sqlmap-config.xml" />
+	</bean>
+
+    <bean id="dataSource" class="com.lt.study.archive.DynamicDataSource">
+        <property name="targetDataSources">
+            <map key-type="java.lang.String">
+                <entry key="archive" value-ref="archive"/>
+                <entry key="test" value-ref="test"/>
+            </map>
+        </property>
+        <property name="defaultTargetDataSource" ref="archive"/>
+    </bean>
+
+    <bean id="archive" class="org.apache.commons.dbcp.BasicDataSource" >
+        <property name="driverClassName" value="${archive.jdbc.driver.className}"/>
+        <property name="url" value="${archive.jdbc.url}"/>
+        <property name="username" value="${archive.jdbc.username}"/>
+        <property name="password" value="${archive.jdbc.password}"/>
+        <property name="maxActive" value="${archive.jdbc.max.active}"/>
+        <property name= "testWhileIdle" value="true"/>
+        <property name= "testOnBorrow" value="false"/>
+        <property name= "testOnReturn" value="false"/>
+        <property name= "validationQuery" value="select 1"/>
+        <property name= "validationQueryTimeout" value="1"/>
+        <property name= "timeBetweenEvictionRunsMillis" value="60000"/>
+        <property name= "numTestsPerEvictionRun" value="${archive.jdbc.max.active}"/>
+    </bean>
+
+    <bean id="test" class="org.apache.commons.dbcp.BasicDataSource" >
+        <property name="driverClassName" value="${test.jdbc.driver.className}"/>
+        <property name="url" value="${test.jdbc.url}"/>
+        <property name="username" value="${test.jdbc.username}"/>
+        <property name="password" value="${test.jdbc.password}"/>
+        <property name="maxActive" value="${test.jdbc.max.active}"/>
+        <property name= "testWhileIdle" value="true"/>
+        <property name= "testOnBorrow" value="false"/>
+        <property name= "testOnReturn" value="false"/>
+        <property name= "validationQuery" value="select 1"/>
+        <property name= "validationQueryTimeout" value="1"/>
+        <property name= "timeBetweenEvictionRunsMillis" value="60000"/>
+        <property name= "numTestsPerEvictionRun" value="${test.jdbc.max.active}"/>
+    </bean>
+
+</beans>
