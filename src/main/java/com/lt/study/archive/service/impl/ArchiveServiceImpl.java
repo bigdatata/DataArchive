@@ -76,10 +76,10 @@ public class ArchiveServiceImpl implements ArchiveService {
         CustomerContextHolder.setCustomerType(archiveTask.getSourceDatabase());
         Map<String, Object> infoMap = new HashMap<String, Object>();
         infoMap.put("sourceTable", archiveTask.getSourceTable());
-        infoMap.put("key",archiveTask.getKeyColumn());
+        infoMap.put("key", archiveTask.getKeyColumn());
         StringBuilder where = getWhere(archiveTask,null);
         //设置时间为大于条件时间
-        where.replace(where.indexOf("<"),where.indexOf("<")+1,">=");
+        where.replace(where.indexOf("<"), where.indexOf("<") + 1, ">=");
         infoMap.put("where", where.toString());
         return archiveDao.selectKeyTop(infoMap);
     }
@@ -122,7 +122,12 @@ public class ArchiveServiceImpl implements ArchiveService {
             Map map = (Map) item;
             value.append("(");
             for (int i = 0; i < columns.length; i++) {
-                value.append("\"").append(map.get(columns[i])).append("\"");
+                Object valueObject =  map.get(columns[i]);
+                if ( null!=valueObject){
+                    value.append("\"").append(map.get(columns[i])).append("\"");
+                }else {
+                    value.append("NULL");
+                }
                 if (i < columns.length - 1) {
                     value.append(",");
                 }
