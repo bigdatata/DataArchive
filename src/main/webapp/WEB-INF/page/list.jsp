@@ -25,7 +25,7 @@
 <jsp:include page="navbar.jsp"></jsp:include>
 <div class="container" id="content">
     <p>
-        <a href="<%=path%>/archive/addOrUpdate" class="btn btn-primary">添加新的归档任务</a>
+        <a href="/archive/addOrUpdate" class="btn btn-primary">添加新的归档任务</a>
     </p>
     <table class="table table-bordered table-hover  table-condensed">
         <tr>

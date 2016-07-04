@@ -17,26 +17,7 @@
     <script type="text/javascript" src="/js/jquery-1.6.4.min.js"></script>
     <script type="text/javascript" src="/js/jquery.validate.min.js"></script>
     <script type="text/javascript" src="/js/validate.messages_cn.js"></script>
-    <script type="text/javascript">
-//        $(document).ready(function(){
-//
-//            function changeTable(databaseId,tableId){
-//                var dataSource=$("#sourceDatabase").val();
-//                $.ajax({
-//                    url: "/archive/getTable",
-//                    type: "post",
-//                    data: { dataSource :sourceDatabase },
-//                    dataType: "json"
-//                }).done(function( msg ) {
-//                            if(msg.length>0){
-//                                var select='<select id="'+tableId+'" name="'+tableId+'">';
-//
-//                            }
-//                        });
-//            }
-//
-//        });
-    </script>
+    <script type="text/javascript" src="/js/addOrUpdate.js" charset="UTF-8"></script>
 </head>
 <body>
 <jsp:include page="navbar.jsp"></jsp:include>
@@ -60,7 +41,8 @@
         <div class="control-group">
             <label class="control-label" for="sourceTable">源数据库表</label>
             <div class="controls">
-                <input required type="text" value="${entity.sourceTable}" id="sourceTable" name="sourceTable" placeholder="源数据库表"/>
+                <%--<input required type="text" value="${entity.sourceTable}" id="sourceTable" name="sourceTable" placeholder="源数据库表"/>--%>
+                <select id="sourceTable" name="sourceTable" data-table="${entity.sourceTable}"></select>
             </div>
         </div>
 
@@ -80,7 +62,8 @@
         <div class="control-group">
             <label class="control-label" for="targetTable">目标据库表</label>
             <div class="controls">
-                <input required type="text" value="${entity.targetTable}" id="targetTable" name="targetTable" placeholder="目标数据库表"/>
+                <%--<input required type="text" value="${entity.targetTable}" id="targetTable" name="targetTable" placeholder="目标数据库表"/>--%>
+                <select id="targetTable" name="targetTable" data-table="${entity.targetTable}"></select>
             </div>
         </div>
 
