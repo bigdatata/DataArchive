@@ -38,7 +38,7 @@ public class ArchiveDaoImpl extends SqlMapClientTemplate implements ArchiveDao {
         try{
             return this.queryForList("archive.select",infoMap);
         }catch (Exception e){
-            logger.info("select"+e);
+            logger.info("select error,msg: "+e);
         }
         return null;
     }
@@ -48,7 +48,7 @@ public class ArchiveDaoImpl extends SqlMapClientTemplate implements ArchiveDao {
         try{
             return (Long)this.queryForObject("archive.selectKeyTop",infoMap);
         }catch (Exception e){
-            logger.info("selectKeyTop"+e);
+            logger.info("selectKeyTop error,msg:"+e);
         }
         return -1L;
     }
@@ -58,7 +58,7 @@ public class ArchiveDaoImpl extends SqlMapClientTemplate implements ArchiveDao {
         try{
             return (Long)this.queryForObject("archive.count",infoMap);
         }catch (Exception e){
-            logger.info("count"+e);
+            logger.info("count error,msg:"+e);
         }
         return -1L;
     }
@@ -67,7 +67,7 @@ public class ArchiveDaoImpl extends SqlMapClientTemplate implements ArchiveDao {
         try{
             return queryForList("archive.showTable");
         }catch (Exception e){
-            logger.info("showTable"+e);
+            logger.info("showTable error,msg:"+e);
         }
         return new ArrayList<String>();
     }

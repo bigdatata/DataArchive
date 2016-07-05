@@ -42,7 +42,7 @@ public class ArchiveTaskExecutor {
 
     public static void addOneArchiveTask(ArchiveTask archiveTask){
         while (true){
-            if(archiveTaskExecutor.getQueue().size()<ArchiveTaskQueueSize){
+            if(archiveTaskExecutor.getPoolSize()<archiveTaskExecutor.getMaximumPoolSize()){
                 archiveTaskExecutor.execute(new DoArchiveTaskWorker(archiveTask));
                 return;
             }

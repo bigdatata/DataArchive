@@ -9,7 +9,8 @@ package com.lt.study.archive.constant;
 public enum ArchiveType {
     Copy_Delete(0, "拷贝删除"),
     Copy(1, "只拷贝"),
-    Delete(2, "直接删除");
+    Delete(2, "直接删除"),
+    Init_Archive(3, "初次归档(拷贝删除)");;
     private int code;
     private String desc;
 
