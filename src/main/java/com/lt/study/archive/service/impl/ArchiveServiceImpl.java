@@ -5,6 +5,7 @@ import com.lt.study.archive.dao.ArchiveDao;
 import com.lt.study.archive.pojo.ArchiveTask;
 import com.lt.study.archive.service.ArchiveService;
 import com.lt.study.archive.util.DateUtil;
+import com.lt.study.archive.util.MYSQLEncoder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -124,7 +125,7 @@ public class ArchiveServiceImpl implements ArchiveService {
             for (int i = 0; i < columns.length; i++) {
                 Object valueObject =  map.get(columns[i]);
                 if ( null!=valueObject){
-                    value.append("\"").append(map.get(columns[i])).append("\"");
+                    value.append("\'").append(MYSQLEncoder.encode(valueObject.toString())).append("\'");
                 }else {
                     value.append("NULL");
                 }
